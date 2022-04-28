@@ -1,3 +1,5 @@
+import res from "express/lib/response";
+
 let videos = [
     {
         title: "First Video",
@@ -44,8 +46,10 @@ export const postEdit = (req,res) => {
     videos[id-1].title = title;
     return res.redirect(`/videos/${id}`);
 };
-export const search = (req, res) => res.send("Search");
-export const upload = (req,res) => res.send("Upload");
-export const deleteVideo = (req,res) => {
-    return res.send("Delete Video");
+export const getUpload = (req,res) => {
+    return res.render("upload");
+};
+export const postUpload = (req, res) => {
+    // Here we will add a video to the videos array.
+    return res.redirect("/");
 };
