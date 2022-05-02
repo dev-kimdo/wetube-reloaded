@@ -7,7 +7,7 @@
     "url": "git+https://github.com/dev-kimdo/wetube-reloaded.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js",
+    "dev": "nodemon --exec babel-node src/init.js",
     "lint": "eslint"
   },
   "author": "",
