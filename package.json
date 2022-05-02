@@ -7,7 +7,8 @@
     "url": "git+https://github.com/dev-kimdo/wetube-reloaded.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/server.js",
+    "lint": "eslint"
   },
   "author": "",
   "license": "MIT",
@@ -17,6 +18,7 @@
   "homepage": "https://github.com/dev-kimdo/wetube-reloaded#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "mongoose": "^6.3.1",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
   },
@@ -24,6 +26,8 @@
     "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
-    "nodemon": "^2.0.15"
+    "eslint": "^8.14.0",
+    "nodemon": "^2.0.15",
+    "prettier": "2.6.2"
   }
 }
