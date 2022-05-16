@@ -12,9 +12,11 @@ export const home = async(req,res) => {
     return res.render("home", {pageTitle: "Home", videos});
 };
 
-export const watch = (req, res) => {
-    const { id } = req.params;  //const id = req.params.id; 와 동일함 (현재 작성된 것은 ES6를 사용한 거임)
-    return res.render("watch", {pageTitle: `Watching`, videos});
+export const watch = async(req, res) => {
+    const { id } = req.params; //const id = req.params.id; 와 동일함 (현재 작성된 것은 ES6를 사용한 거임)
+    const video = await Video.findById(id);
+    console.log(video);
+    return res.render("watch", {pageTitle: video.title, video});
 };
 export const getEdit = (req,res) => {
     const { id } = req.params;  //const id = req.params.id; 와 동일함 (현재 작성된 것은 ES6를 사용한 거임)
