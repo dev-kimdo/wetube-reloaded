@@ -14,7 +14,7 @@ export const home = async(req,res) => {
 
 export const watch = (req, res) => {
     const { id } = req.params;  //const id = req.params.id; 와 동일함 (현재 작성된 것은 ES6를 사용한 거임)
-    return res.render("watch", {pageTitle: `Watching`});
+    return res.render("watch", {pageTitle: `Watching`, videos});
 };
 export const getEdit = (req,res) => {
     const { id } = req.params;  //const id = req.params.id; 와 동일함 (현재 작성된 것은 ES6를 사용한 거임)
