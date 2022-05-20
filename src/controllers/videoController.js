@@ -19,7 +19,7 @@ export const watch = async(req, res) => {
     if(video) {
         return res.render("watch", {pageTitle: video.title, video});
     } else {
-        return res.render("404", {pageTitle: "Video Not Found."});
+        return res.status(404).render("404", {pageTitle: "Video Not Found."});
     }
 };
 
@@ -27,7 +27,7 @@ export const getEdit = async(req,res) => {
     const { id } = req.params;
     const video = await Video.findById(id);  //const id = req.params.id; 와 동일함 (현재 작성된 것은 ES6를 사용한 거임)
     if(!video) {
-        return res.render("404", {pageTitle: "Video Not Found."});
+        return res.status(404).render("404", {pageTitle: "Video Not Found."});
     } else {
         return res.render("edit", {pageTitle: `Edit ${video.title}`, video});
     }
@@ -94,7 +94,7 @@ export const postUpload = async(req, res) => {
         });
         return res.redirect("/");
     } catch(error) {
-        return res.render("upload", 
+        return res.status(400).render("upload", 
         {pageTitle: "Upload Video",
         errorMessage: error._message,});
     }
