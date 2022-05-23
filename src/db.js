@@ -1,6 +1,9 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb://127.0.0.1:27017/wetube", { useNewUrlParser: true, useUnifiedTopology: true });
+console.log(process.env.COOKIE_SECRET, process.env.DB_URL);
+
+
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
