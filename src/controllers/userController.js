@@ -134,7 +134,21 @@ export const getEdit = (req,res) => {
     return res.render("edit-profile", {pageTitle: "Edit Profile"});
 };
 
-export const postEdit = (req,res) => {
+export const postEdit = async(req,res) => {
+    // const { user: {id} } = req.session;
+    const { 
+        session: {
+            user: { _id },
+        },
+        body: {name, email, username, location},
+    } = req; 
+    await User.findByIdAndUpdate(_id, {
+        name,
+        email,
+        username,
+        location,
+    });    // const id = req.session.user.id; 
+    // const {name, email, username, location} = req.body;  이 2 줄을 위처럼 한번에 작성 가능
     return res.render("edit-profile");
 };
 
