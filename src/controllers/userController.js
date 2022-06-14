@@ -142,14 +142,30 @@ export const postEdit = async(req,res) => {
         },
         body: {name, email, username, location},
     } = req; 
-    await User.findByIdAndUpdate(_id, {
-        name,
-        email,
-        username,
-        location,
-    });    // const id = req.session.user.id; 
-    // const {name, email, username, location} = req.body;  이 2 줄을 위처럼 한번에 작성 가능
-    return res.render("edit-profile");
+    const pageTitle = "Edit Profile"
+    const exists = await User.exists( {$or: [{username},{email}]});
+    if(exists) {
+            return res.status(400).render("edit-profile", {pageTitle, errorMessage: "This username/email is already taken."} );
+    }
+    try {
+        const updatedUser = await User.findByIdAndUpdate(_id, 
+            {
+            name,
+            email,
+            username,
+            location,
+        },
+        { new: true },
+        );
+        req.session.user = updatedUser;
+        return res.redirect("/users/edit");
+        // const id = req.session.user.id; 
+        // const {name, email, username, location} = req.body;  이 2 줄을 위처럼 한번에 작성 가능
+    } catch(error) {
+        return res.status(400).render("join", 
+        {pageTitle,
+        errorMessage: error._message,});
+    }
 };
 
 export const see = (req,res) => res.send("See User");
